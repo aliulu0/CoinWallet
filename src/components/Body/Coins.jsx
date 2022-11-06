@@ -3,15 +3,15 @@ import CoinItem from "./CoinItem";
 import Table from "react-bootstrap/Table";
 import "./coins.css";
 import { useCoin } from "../../context/coinContext";
-import {useUser} from "../../context/userContext";
+import { useUser } from "../../context/userContext";
 
 function Coins() {
-  const { getCoins, coinList, searchCoin } = useCoin();
-  const {theme} = useUser();
+  const { getCoins, coinList, searchCoin, page} = useCoin();
+  const { theme } = useUser();
+  
   useEffect(() => {
     getCoins();
-    console.log(coinList);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -23,13 +23,17 @@ function Coins() {
             <th className="coin-name">Coin</th>
             <th>Price</th>
             <th className="coin-24h">24h</th>
-            <th className="hide-head coin-30d">30d</th>
             <th className="hide-head">Volume</th>
             <th className="hide-head">Market Cap</th>
           </tr>
         </thead>
         <CoinItem coins={searchCoin(coinList)} />
-      </Table>
+      </Table> 
+      <button
+      className="btn btn-primary"
+      style={{margin:"auto", display: "flex"}}
+      onClick={() => getCoins(page)}
+      >Load More...</button>     
     </div>
   );
 }
