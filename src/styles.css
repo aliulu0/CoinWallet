@@ -1,0 +1,10 @@
+body {
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  overflow: hidden;
+}
+@media screen and (max-width: 900px) {
+  body {
+    overflow: auto;
+  }
+}

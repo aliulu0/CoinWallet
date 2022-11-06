@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 1rem;
+}
+.contact {
+  display: flex;
+  justify-content: center;
+}
+.contact-icon {
+  margin: 0.2rem 0.7rem;
+  cursor: pointer;
+}

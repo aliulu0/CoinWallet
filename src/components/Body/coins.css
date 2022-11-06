@@ -1,0 +1,12 @@
+.container {
+  --bs-gutter-x: 0;
+  overflow-x: hidden;
+}
+@media screen and (max-width: 720px) {
+  .hide-head {
+    display: none;
+  }
+  .container {
+    overflow: auto;
+  }
+}

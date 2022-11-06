@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+  margin: 1rem 0;
+}
+.head {
+  display: flex;
+  align-items: center;
+}
+.search {
+  max-height: 0.7rem;
+  border-radius: 1rem;
+}
+@media screen and (max-width: 720px) {
+  .header {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
