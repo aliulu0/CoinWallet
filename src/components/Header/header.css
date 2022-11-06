@@ -23,3 +23,9 @@
     justify-content: center;
   }
 }
+.icon{
+  display: flex;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+

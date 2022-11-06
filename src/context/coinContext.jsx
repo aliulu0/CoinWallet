@@ -29,7 +29,7 @@ const CoinProvider = ({ children }) => {
     getCoins,
     searchCoinText,
     setSearchCoinText,
-    searchCoin
+    searchCoin,
   };
   return <CoinContext.Provider value={values}>{children}</CoinContext.Provider>;
 };

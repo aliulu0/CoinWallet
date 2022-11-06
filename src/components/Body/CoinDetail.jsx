@@ -7,9 +7,12 @@ import { LinkContainer } from "react-router-bootstrap";
 import {MdArrowBackIosNew} from 'react-icons/md';
 import HistoryCart from "./HistoryCart";
 import "./coinDetail.css";
+import {useUser} from "../../context/userContext";
+
 function CoinDetail() {
   const [coin, setCoin] = useState({});
   const params = useParams();
+  const {theme} = useUser();
 
   async function getCoin() {
     const response = await axios.get(
@@ -25,7 +28,7 @@ function CoinDetail() {
 
   return (
     <div className="coin-detail">
-      <Card className="card ">
+      <Card className={`${theme === "dark" ? "bg-dark text-light" : ""}`}>
         <Card.Header>
           <LinkContainer to="/" className="backPage">
           <MdArrowBackIosNew />
@@ -57,7 +60,7 @@ function CoinDetail() {
             </div>
           </div>
           <HistoryCart id={params.coinId} />
-          <Table striped key={params.coinId} bordered variant="light">
+          <Table striped key={params.coinId} bordered variant={`${theme === "dark" ? "bg-dark text-light" : "light"}`}>
             <thead>
               <th>1h</th>
               <th>24h</th>
@@ -209,7 +212,7 @@ function CoinDetail() {
               </div>
             </div>
           </div>
-          <Accordion defaultActiveKey="1">
+          <Accordion defaultActiveKey="1" className={`${theme === "dark" ? "bg-dark text-light" : ""}`}>
             <Accordion.Item eventKey="0">
               <Accordion.Header>
                 <h5>About {coin.name}</h5>

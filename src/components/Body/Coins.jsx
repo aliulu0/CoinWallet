@@ -3,10 +3,11 @@ import CoinItem from "./CoinItem";
 import Table from "react-bootstrap/Table";
 import "./coins.css";
 import { useCoin } from "../../context/coinContext";
+import {useUser} from "../../context/userContext";
 
 function Coins() {
   const { getCoins, coinList, searchCoin } = useCoin();
-
+  const {theme} = useUser();
   useEffect(() => {
     getCoins();
     console.log(coinList);
@@ -15,7 +16,7 @@ function Coins() {
 
   return (
     <div className="container">
-      <Table striped hover variant="light">
+      <Table variant={`${theme === "dark" ? "bg-dark text-light" : "light"}`}>
         <thead>
           <tr className="coin-heading ">
             <th className="rank">#</th>

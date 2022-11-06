@@ -26,32 +26,6 @@ ChartJS.register(
 
 function HistoryCart(props) {
   const [chartList, setChartList] = useState([]);
-  // const dayAndInterval = {
-  //   "1h": {
-  //     number: 1,
-  //     interval: "hours"
-  //   },
-  //   "24h": {
-  //     number: 24,
-  //     interval: "hours"
-  //   },
-  //   "7d": {
-  //     number: 7,
-  //     interval: "daily"
-  //   },
-  //   "14d": {
-  //     number: 14,
-  //     interval: "daily"
-  //   },
-  //   "30d": {
-  //     number: 30,
-  //     interval: "daily"
-  //   },
-  //   "1yr": {
-  //     number: 1,
-  //     interval: "years"
-  //   }
-  // };
 
   async function getCoinChart() {
     const response = await axios.get(
@@ -67,7 +41,10 @@ function HistoryCart(props) {
 
   useEffect(() => {
     getCoinChart();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+
   const options = {
     responsive: true
   };
