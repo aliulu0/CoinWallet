@@ -2,6 +2,7 @@ import "./styles.css";
 import App from "./components/Body/App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import CoinDetail from "./components/Body/CoinDetail";
 
 function Router() {
   return (
@@ -9,6 +10,8 @@ function Router() {
       <div className="main">
         <Routes>
           <Route path="/" element={<App />} />
+          <Route path="/coins/:coinId" element={<CoinDetail />} />
+
         </Routes>
       </div>
     </BrowserRouter>
