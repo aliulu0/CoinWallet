@@ -12,7 +12,7 @@ import {useUser} from "../../context/userContext";
 function CoinDetail() {
   const [coin, setCoin] = useState({});
   const params = useParams();
-  const {theme} = useUser();
+  const {theme, addToWallet, removeFromWallet, money, setMoney} = useUser();
 
   async function getCoin() {
     const response = await axios.get(
@@ -23,8 +23,20 @@ function CoinDetail() {
 
   useEffect(() => {
     getCoin();
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  function handleAddToWallet(){
+    if(money > coin.market_data.current_price.usd){
+      addToWallet(coin)
+      setMoney(money - coin.market_data.current_price.usd)
+    }
+  }
+  function handleRemoveFromWallet(){
+    removeFromWallet(coin);
+    setMoney(money + coin.market_data.current_price.usd);
+  }
 
   return (
     <div className="coin-detail">
@@ -33,7 +45,11 @@ function CoinDetail() {
           <LinkContainer to="/" className="backPage">
           <MdArrowBackIosNew />
           </LinkContainer>
+          <div className="coin-detail-header">
+          <button className="btn btn-success" onClick={handleAddToWallet}>BUY</button>
           <h1 className="text-center">{coin.name}</h1>
+          <button className="btn btn-danger" onClick={handleRemoveFromWallet}>Sell</button>
+          </div>
         </Card.Header>
         <Card.Body className="content">
           <div className="rank">
@@ -53,7 +69,7 @@ function CoinDetail() {
               <h1>
                 {coin.market_data?.current_price ? (
                   <h1>
-                    ${coin.market_data.current_price.usd.toLocaleString()}
+                    ${parseFloat(coin.market_data.current_price.usd).toFixed(3)}
                   </h1>
                 ) : null}
               </h1>
@@ -187,13 +203,13 @@ function CoinDetail() {
               <div className="row">
                 <h5>24 Hour High</h5>
                 {coin.market_data?.high_24h ? (
-                  <p>$ {coin.market_data.high_24h.usd.toLocaleString()}</p>
+                  <p>$ {parseFloat(coin.market_data.high_24h.usd).toFixed(3)}</p>
                 ) : null}
               </div>
               <div className="row">
                 <h5>24 Hour Low</h5>
                 {coin.market_data?.low_24h ? (
-                  <p>$ {coin.market_data.low_24h.usd.toLocaleString()}</p>
+                  <p>$ {parseFloat(coin.market_data.low_24h.usd).toFixed(3)}</p>
                 ) : null}
               </div>
             </div>

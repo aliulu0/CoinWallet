@@ -12,12 +12,17 @@
 }
 .head:hover{
   cursor: pointer;
+  transform: scale(1.04);
+  transition: 0.3s ease-in-out;
 }
 .search {
   max-height: 0.7rem;
   border-radius: 1rem;
 }
-@media screen and (max-width: 720px) {
+.header input{
+  margin: auto;
+}
+@media screen and (max-width: 900px) {
   .header {
     flex-direction: column;
     justify-content: center;
@@ -27,5 +32,11 @@
   display: flex;
   font-size: 1.5rem;
   cursor: pointer;
+  
+}
+.wallet-icon{
+  cursor: pointer;
+  transform: scale(1.04);
+  transition: 0.3s ease-in-out;
 }
 

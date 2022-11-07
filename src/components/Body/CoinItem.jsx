@@ -20,7 +20,7 @@ function App({ coins }) {
                   <p>{coin.name}</p>
                   <p className="coin-symbol mb-0">{coin.symbol.toUpperCase()}</p>
                 </td>
-                <td>${coin.current_price.toLocaleString()}</td>
+                <td>${parseFloat(coin.current_price).toFixed(5)}</td>
                 <td
                   style={{
                     color: coin.price_change_percentage_24h > 0 ? "green" : "red"
@@ -28,8 +28,8 @@ function App({ coins }) {
                 >
                   {coin.price_change_percentage_24h.toFixed(2)}%
                 </td>
-                <td className="hide-info">{coin.total_volume.toLocaleString()}</td>
-                <td className="hide-info">{coin.market_cap.toLocaleString()}</td>
+                <td className="hide-info">{coin.total_volume.toLocaleString("en-US")}</td>
+                <td className="hide-info">{coin.market_cap.toLocaleString("en-US")}</td>
               </tr>
             </LinkContainer>
 

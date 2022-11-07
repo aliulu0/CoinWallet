@@ -1,0 +1,28 @@
+.wallet-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.current-price{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.current-price span{
+    border: 2px solid #000;
+    padding: 0.5rem 1rem;
+    border-radius: 0.8rem;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 2rem;
+}

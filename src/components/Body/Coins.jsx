@@ -6,13 +6,18 @@ import { useCoin } from "../../context/coinContext";
 import { useUser } from "../../context/userContext";
 
 function Coins() {
-  const { getCoins, coinList, searchCoin, page} = useCoin();
+  const { getCoins, coinList, searchCoin, page, setPage} = useCoin();
   const { theme } = useUser();
   
   useEffect(() => {
-    getCoins();
+    const data = setInterval(() => getCoins(), 3000);
+    return () => clearInterval(data);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+
+    
 
   return (
     <div className="container">
@@ -32,7 +37,7 @@ function Coins() {
       <button
       className="btn btn-primary"
       style={{margin:"auto", display: "flex"}}
-      onClick={() => getCoins(page)}
+      onClick={() => getCoins(setPage(page + 50))}
       >Load More...</button>     
     </div>
   );

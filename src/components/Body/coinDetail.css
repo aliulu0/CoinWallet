@@ -5,6 +5,11 @@
     flex-direction: column;
     max-width: 47rem;
   }
+  .coin-detail-header{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
   .content {
     display: flex;
     flex-direction: column;
