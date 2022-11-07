@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import { useUser } from "../../context/userContext";
 import './walletList.css';
+import ToastMessage from "../../helper/ToastMessage";
 
 function WalletList(props) {
     const { addToWallet, wallet, removeFromWallet, money, setMoney, theme } = useUser();
+    const [message, setMessage] = useState(false);
+    const [hidden, setHidden] = useState(true);
+    const [show, setShow] = useState(true);
     let walletItem = [];
     for (let index = 0; index < wallet.length; index++) {
         walletItem.push(props.items.filter(item => item.id === wallet[index].id))
@@ -16,10 +20,20 @@ function WalletList(props) {
             addToWallet(item);
             setMoney(money - item.current_price);
         }
+        setMessage("The coin successfully bought!");
+        setHidden(false)
+        setShow(true)
     }
     const handleRemoveFromWallet = (item) => {
         removeFromWallet(item);
         setMoney(money + item.current_price);
+        setMessage("The coin successfully sold!");
+        setHidden(false)
+        setShow(true)
+    }
+    const handleClose = () => {
+        setShow(false);
+        setHidden(true)
     }
 
     return (
@@ -27,6 +41,9 @@ function WalletList(props) {
             {
                 walletItem.map(items => items.map((item) => (
                     <>
+                        <div hidden={hidden}>
+                            <ToastMessage message={message} isShow={show} close={handleClose} />
+                        </div>
                         <Card className={`mt-3 ${theme === "dark" ? "bg-dark text-light" : ""}`} key={item.id}>
                             {items.forEach((element) => {
                                 let live = wallet.find((x) => x.id === element.id);

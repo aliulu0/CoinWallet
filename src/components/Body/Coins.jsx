@@ -6,18 +6,17 @@ import { useCoin } from "../../context/coinContext";
 import { useUser } from "../../context/userContext";
 
 function Coins() {
-  const { getCoins, coinList, searchCoin, page, setPage} = useCoin();
+  const { getCoins, coinList, searchCoin, loading } = useCoin();
   const { theme } = useUser();
-  
+
   useEffect(() => {
-    const data = setInterval(() => getCoins(), 3000);
-    return () => clearInterval(data);
+    getCoins()
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
-    
+
 
   return (
     <div className="container">
@@ -33,13 +32,10 @@ function Coins() {
           </tr>
         </thead>
         <CoinItem coins={searchCoin(coinList)} />
-      </Table> 
-      <button
-      className="btn btn-primary"
-      style={{margin:"auto", display: "flex"}}
-      onClick={() => getCoins(setPage(page + 50))}
-      >Load More...</button>     
+      </Table>
+      {loading ? (<p>loading....</p>) : "" }
     </div>
+
   );
 }
 export default Coins;

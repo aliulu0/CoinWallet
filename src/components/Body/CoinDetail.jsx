@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Table, Accordion, Card } from "react-bootstrap";
+import { Table, Accordion, Card} from "react-bootstrap";
 import parse from 'html-react-parser';
 import { LinkContainer } from "react-router-bootstrap";
 import {MdArrowBackIosNew} from 'react-icons/md';
 import HistoryCart from "./HistoryCart";
 import "./coinDetail.css";
 import {useUser} from "../../context/userContext";
+import ToastMessage from "../../helper/ToastMessage";
 
 function CoinDetail() {
   const [coin, setCoin] = useState({});
+  const [message, setMessage] = useState(false);
+  const [hidden, setHidden] = useState(true);
+  const [show, setShow] = useState(true);
   const params = useParams();
   const {theme, addToWallet, removeFromWallet, money, setMoney} = useUser();
 
@@ -32,14 +36,27 @@ function CoinDetail() {
       addToWallet(coin)
       setMoney(money - coin.market_data.current_price.usd)
     }
+    setMessage("The coin successfully bought!");
+    setHidden(false)
+    setShow(true)
   }
   function handleRemoveFromWallet(){
     removeFromWallet(coin);
     setMoney(money + coin.market_data.current_price.usd);
+    setMessage("The coin successfully sold!");
+    setHidden(false)
+    setShow(true)
+  }
+  const handleClose = () => {
+    setShow(false);
+    setHidden(true)
   }
 
   return (
     <div className="coin-detail">
+      <div hidden={hidden}>
+      <ToastMessage message={message} isShow={show} close={handleClose}/>
+      </div>
       <Card className={`${theme === "dark" ? "bg-dark text-light" : ""}`}>
         <Card.Header>
           <LinkContainer to="/" className="backPage">

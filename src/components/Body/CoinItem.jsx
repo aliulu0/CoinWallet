@@ -20,7 +20,7 @@ function App({ coins }) {
                   <p>{coin.name}</p>
                   <p className="coin-symbol mb-0">{coin.symbol.toUpperCase()}</p>
                 </td>
-                <td>${parseFloat(coin.current_price).toFixed(5)}</td>
+                <td>${parseFloat(coin.current_price).toFixed(2)}</td>
                 <td
                   style={{
                     color: coin.price_change_percentage_24h > 0 ? "green" : "red"
