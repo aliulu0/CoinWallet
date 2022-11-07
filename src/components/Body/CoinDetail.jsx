@@ -51,7 +51,7 @@ function CoinDetail() {
     setShow(false);
     setHidden(true)
   }
-
+  localStorage.setItem("money", JSON.stringify(money));
   return (
     <div className="coin-detail">
       <div hidden={hidden}>

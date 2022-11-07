@@ -2,10 +2,12 @@ import { createContext, useContext, useState } from "react";
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light");
-  const [money, setMoney] = useState(100000);
-  const [wallet, setWallet] = useState([]);
-  const [items, setItems] = useState([]);
+  // const defaultWalletAmount = localStorage.getItem("wallet"));
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [money, setMoney] = useState(localStorage.getItem("money") || 100000);
+  const [wallet, setWallet] = useState(JSON.parse(localStorage.getItem("wallet")) || []);
+  const defaultWallet = localStorage.getItem("items");
+  const [items, setItems] = useState(defaultWallet || []);
 
   const addToWallet = (item) => {
     const walletCurrent = wallet.filter((walletItem) => walletItem.id !== item.id);
@@ -37,8 +39,9 @@ const UserProvider = ({ children }) => {
     } else {
       setWallet([...walletCurrent, checkWallet]);
     }
-
   };
+  localStorage.setItem("items", JSON.stringify(items));
+
 
     
   const values = {

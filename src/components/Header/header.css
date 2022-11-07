@@ -22,16 +22,12 @@
 .header input{
   margin: auto;
 }
-@media screen and (max-width: 900px) {
-  .header {
-    flex-direction: column;
-    justify-content: center;
-  }
-}
+
 .icon{
   display: flex;
   font-size: 1.5rem;
   cursor: pointer;
+  margin-right: 2rem;
   
 }
 .wallet-icon{
@@ -40,3 +36,9 @@
   transition: 0.3s ease-in-out;
 }
 
+@media screen and (max-width: 900px) {
+  .header {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "./header.css";
 import { BiCoinStack } from "react-icons/bi";
 import { FaSun, FaMoon, FaWallet } from "react-icons/fa";
+import { FiRefreshCcw} from "react-icons/fi";
 import { useCoin } from "../../context/coinContext";
 import { useUser } from "../../context/userContext";
 import { LinkContainer } from "react-router-bootstrap";
@@ -15,6 +16,12 @@ function Header(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  localStorage.setItem("theme", theme);
+
+  const clear = () =>{
+    localStorage.clear();
+    window.location.reload();
+  }
   return (
     <Navbar className="header p-2" variant={theme} bg={theme} expand="lg  ">
       <LinkContainer to="/">
@@ -51,6 +58,7 @@ function Header(props) {
         value={searchCoinText}
       />
       {theme === "light" ? <FaMoon className="icon" onClick={() => setTheme("dark")}/> : <FaSun className="icon" onClick={() => setTheme("light") }/>}     
+      <FiRefreshCcw size={"24"}  onClick={clear} style={{cursor:"pointer"}}/>
     </Navbar>
   );
 }

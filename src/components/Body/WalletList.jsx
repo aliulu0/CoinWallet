@@ -35,6 +35,7 @@ function WalletList(props) {
         setShow(false);
         setHidden(true)
     }
+    localStorage.setItem("wallet", JSON.stringify(wallet))
 
     return (
         <div>
