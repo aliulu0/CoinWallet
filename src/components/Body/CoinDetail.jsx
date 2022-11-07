@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Table, Accordion, Card } from "react-bootstrap";
-import ReactHtmlParser from "react-html-parser";
+import parse from 'html-react-parser';
 import { LinkContainer } from "react-router-bootstrap";
 import {MdArrowBackIosNew} from 'react-icons/md';
 import HistoryCart from "./HistoryCart";
@@ -235,7 +235,7 @@ function CoinDetail() {
               </Accordion.Header>
               <Accordion.Body>
                 {coin.description?.en ? (
-                  <p>{ReactHtmlParser(coin.description.en)}</p>
+                  <p>{parse(coin.description.en)}</p>
                 ) : (
                   ""
                 )}
