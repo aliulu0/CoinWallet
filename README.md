@@ -29,6 +29,7 @@ npm start or yarn start
 ## Technologies and Libraries
 
 - React.js <br />
+- Context API <br />
 - axios <br />
 - boostrap <br />
 - char.js <br />
